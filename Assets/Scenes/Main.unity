@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 219763296}
   - component: {fileID: 219763298}
   - component: {fileID: 219763299}
+  - component: {fileID: 219763300}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -288,8 +289,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpCount: 0
   isLongJump: 0
+  hasAttacked: 0
   HP: 4
   Attack: 20
+--- !u!114 &219763300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219763293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435c8745ab8dfbe41b589b4cd5090e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 0
+  maxAccel: 0
+  velocity: {x: 0, y: 0}
 --- !u!1001 &278360289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -628,11 +645,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1467877344056008419, guid: ef854f104c35c01418e6ccd230a944b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.65525675
+      value: 0.78
       objectReference: {fileID: 0}
     - target: {fileID: 1467877344056008419, guid: ef854f104c35c01418e6ccd230a944b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6057881
+      value: 1.08
       objectReference: {fileID: 0}
     - target: {fileID: 1467877344056008419, guid: ef854f104c35c01418e6ccd230a944b3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -685,11 +702,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1467877344056008419, guid: ef854f104c35c01418e6ccd230a944b3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.4272408
+      value: -2.83
       objectReference: {fileID: 0}
     - target: {fileID: 1467877344056008419, guid: ef854f104c35c01418e6ccd230a944b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.1157532
+      value: -0.32
       objectReference: {fileID: 0}
     - target: {fileID: 1467877344056008419, guid: ef854f104c35c01418e6ccd230a944b3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -855,6 +872,8 @@ GameObject:
   - component: {fileID: 1186081400}
   - component: {fileID: 1186081399}
   - component: {fileID: 1186081398}
+  - component: {fileID: 1186081403}
+  - component: {fileID: 1186081402}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -908,7 +927,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1186081400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -976,6 +995,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1186081402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186081397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f891a31ec3952ef4cb170fce6d3bd90b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 219763293}
+  maxPredeiction: 2
+--- !u!114 &1186081403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186081397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435c8745ab8dfbe41b589b4cd5090e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 3
+  maxAccel: 20
+  velocity: {x: 0, y: 0}
 --- !u!1 &1436162264
 GameObject:
   m_ObjectHideFlags: 0
