@@ -7,14 +7,24 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
-
+    
+    
+    //이동정보
     float walkSpeed = 10.0f;
     float jumpForce = 500.0f;
     public int jumpCount = 0;
     public bool isLongJump = false;
+    
+    
     public bool hasAttacked = false;
     public int HP = 4;
     public int Attack = 20;
+    public double AttackSpeed;   //공격속도
+    public float AttackScail;   //공격범위
+    public int Avoidance = 0;     //회피율
+
+
+
 
     void Start()
     {
@@ -25,7 +35,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
-
+        //키보드 이동
         if (Input.GetKey(KeyCode.Space))
         {
             isLongJump = true;
