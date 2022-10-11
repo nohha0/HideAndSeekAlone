@@ -2,41 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnhanceList :PlayerController
+public class EnhanceList : PlayerController
 {
 
     //강화카운트
-    public int AttackCount = 0;
-    public int AttackSpeedCount = 0;
-    public int AttackScailCount = 0;
-    public int AvoidanceCount = 0;
+    public int attackPowerCount = 0;
+    public int attackSpeedCount = 0;
+    public int attackRangeCount = 0;
+    public int avoidanceRateCount = 0;
     public int HPCount = 0;
 
 
 
-    void AttackUp()  //공격력증가
+    void AttackPowerUp()  //공격력증가
     {
-        int inc = (Attack / 100) * 35;  //증가율 계산, 35% = (공격력 / 100) *35;
-        Attack += inc;
+        int inc = (attackPower / 100) * 35;  //증가율 계산, 35% = (공격력 / 100) *35;
+        attackPower += inc;
         Debug.Log("공격력증가");
-        AttackCount++;
+        attackPowerCount++;
     }
     void AttackSpeedDown()  //공격속도감소
     {
-        AttackSpeed -= 0.07;
+        attackSpeed -= 0.07;
         Debug.Log("공속감소");
-        AttackSpeedCount++;
+        attackSpeedCount++;
     }
-    void AttackScailUp()  //공격범위증가
+    void AttackRangeUp()  //공격범위증가
     {
         Debug.Log("공범증가");
-        AttackScailCount++;
+        attackRangeCount++;
     }
-    void AvoidanceUp()  //회피율증가
+    void AvoidanceRateUp()  //회피율증가
     {
-        Avoidance += 5;
+        avoidanceRate += 5;
         Debug.Log("회피율증가");
-        AvoidanceCount++;
+        avoidanceRateCount++;
     }
     void HPUp()  //목숨증가
     {
