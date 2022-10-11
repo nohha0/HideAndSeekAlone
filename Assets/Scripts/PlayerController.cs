@@ -11,10 +11,12 @@ public class PlayerController : MonoBehaviour
     float jumpForce = 500.0f;
     public int jumpCount = 0;
     public bool isLongJump = false;
+    public bool TimeStop = false;
     
     public bool hasAttacked = false;
     public int HP = 4;
     public int Level = 1;
+    public int levelCount= 0;
     public int expCurrent = 0;      //현재경험치
     public int expLeft = 1000;      //변수. 레벨업에 필요한 경험치
 
@@ -61,11 +63,31 @@ public class PlayerController : MonoBehaviour
         }
 
         //캐릭터 기본공격
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            //if 플레이어의 무기 콜라이더와 에너미의 콜라이더가 부딪히면
+            //추가)if 플레이어의 무기 콜라이더와 에너미의 콜라이더가 부딪히면
             GainExp(500);
             Debug.Log("경험치 500 획득");
+        }
+
+        if (expCurrent >= expLeft)
+        {
+            LevelUp();
+        }
+
+        if (levelCount > 0)
+        {
+            while (levelCount > 0)
+            {
+                Enhance();
+                levelCount--;
+            }
+        }
+
+        if (Time.timeScale==0 && Input.GetMouseButtonDown(0))
+        {
+            Time.timeScale = 1;
+            TimeStop = false;
         }
     }
 
@@ -94,6 +116,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    virtual public void Enhance()
+    {
+        Time.timeScale = 0;
+        TimeStop = true;
+        Debug.Log("강화");
+    }
+
     public void Jump()
     {
         rigid.AddForce(new Vector2(0.0f, jumpForce));
@@ -108,21 +137,22 @@ public class PlayerController : MonoBehaviour
     public void GainExp(int e)
     {
         expCurrent += e;
-        if (expCurrent >= expLeft)
-        {
-            LevelUp();
-        }
     }
 
     public void LevelUp()
     {
         expCurrent -= expLeft;  //레벨업 시 초과했던 경험치가 날아가지 않음
         Level++;
+        levelCount++;
+
         float t = Mathf.Pow(expMod, Level);         //Pow : expMod^Level
         expLeft = (int)Mathf.Floor(expBase * t);    //Floor : 소수값 버림
         Debug.Log(Level + "레벨로 레벨업!");
+        
 
         //1.2 = 1000, 1440, 1728 ... 12839, 15407, 18488
         //1.21 = 1000, 1464, 1771 ... 14420, 17449, 21113
     }
+
+    
 }
