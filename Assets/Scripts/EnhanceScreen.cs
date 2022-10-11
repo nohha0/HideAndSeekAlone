@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class EnhanceScreen : PlayerController
+public class EnhanceScreen : Level
 {
     
     public void Screen_zom_DDewar()
@@ -12,7 +12,7 @@ public class EnhanceScreen : PlayerController
         if(TimeStop == true)
         {
             gameObject.SetActive(true);
-            Debug.Log("ㅋㅋ");
+            Debug.Log("제발 창을 띄워주세요");
         }
         else
         {
