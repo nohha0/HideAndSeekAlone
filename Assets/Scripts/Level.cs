@@ -8,7 +8,7 @@ public class Level : MonoBehaviour
     public int levelCount = 0;
     public int expCurrent = 0;      //현재경험치
     public int expLeft = 1000;      //변수. 레벨업에 필요한 경험치
-    public bool TimeStop = false;
+
 
     int expBase = 1000;      //상수. 레벨1→레벨2 필요한 경험치
     float expMod = 1.21f;    //경험치 증가량 (지수)
@@ -20,6 +20,7 @@ public class Level : MonoBehaviour
             return expLeft;
         }
     }
+
 
     void Update()
     {
@@ -48,7 +49,6 @@ public class Level : MonoBehaviour
         if (Time.timeScale == 0 && Input.GetMouseButtonDown(0))
         {
             Time.timeScale = 1;
-            TimeStop = false;
         }
     }
 
@@ -76,7 +76,8 @@ public class Level : MonoBehaviour
     virtual public void Enhance()
     {
         Time.timeScale = 0;
-        TimeStop = true;
+
         Debug.Log("강화");
     }
+    
 }

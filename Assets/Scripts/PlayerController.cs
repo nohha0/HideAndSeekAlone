@@ -58,10 +58,13 @@ public class PlayerController : MonoBehaviour
     //Rigidbody(물리연산)를 이용할 때는 FixedUpdate에 작성
     private void FixedUpdate()
     {
+       
         if (isLongJump && rigid.velocity.y>0)   
             rigid.gravityScale = 2.0f;
         else
             rigid.gravityScale = 4.0f;
+        
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
