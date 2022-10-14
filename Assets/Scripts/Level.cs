@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Level : MonoBehaviour
 {
+    private Sprite[] Images;
     public int level = 1;
     public int levelCount = 0;
-    public int expCurrent = 0;      //ÇöÀç°æÇèÄ¡
-    public int expLeft = 1000;      //º¯¼ö. ·¹º§¾÷¿¡ ÇÊ¿äÇÑ °æÇèÄ¡
+    public int expCurrent = 0;      //í˜„ì¬ê²½í—˜ì¹˜
+    public int expLeft = 1000;      //ë³€ìˆ˜. ë ˆë²¨ì—…ì— í•„ìš”í•œ ê²½í—˜ì¹˜
+    int expBase = 1000;      //ìƒìˆ˜. ë ˆë²¨1â†’ë ˆë²¨2 í•„ìš”í•œ ê²½í—˜ì¹˜
+    float expMod = 1.21f;    //ê²½í—˜ì¹˜ ì¦ê°€ëŸ‰ (ì§€ìˆ˜)
 
-
-    int expBase = 1000;      //»ó¼ö. ·¹º§1¡æ·¹º§2 ÇÊ¿äÇÑ °æÇèÄ¡
-    float expMod = 1.21f;    //°æÇèÄ¡ Áõ°¡·® (Áö¼ö)
+    [SerializeField] UpgradePanelManager upgradePanel;
 
     int TO_LEVEL_UP
     {
@@ -21,63 +24,60 @@ public class Level : MonoBehaviour
         }
     }
 
-
-    void Update()
+    private void Update()
     {
-        if (expCurrent >= expLeft)
-        {
-            CheckLevelUp();
-        }
+        CheckLevelUp();
 
         if (levelCount > 0)
         {
-            while (levelCount > 0)
-            {
-                Enhance();
-                levelCount--;
-            }
+            Enhance();
         }
 
-        //Ä³¸¯ÅÍ ±âº»°ø°İ
+        //ìºë¦­í„° ê¸°ë³¸ê³µê²©
         if (Input.GetKeyDown(KeyCode.X))
         {
-            //Ãß°¡)if ÇÃ·¹ÀÌ¾îÀÇ ¹«±â Äİ¶óÀÌ´õ¿Í ¿¡³Ê¹ÌÀÇ Äİ¶óÀÌ´õ°¡ ºÎµúÈ÷¸é
-            GainExp(500);
-            Debug.Log("°æÇèÄ¡ 500 È¹µæ");
-        }
-
-        if (Time.timeScale == 0 && Input.GetMouseButtonDown(0))
-        {
-            Time.timeScale = 1;
+            //ì¶”ê°€)if í”Œë ˆì´ì–´ì˜ ë¬´ê¸° ì½œë¼ì´ë”ì™€ ì—ë„ˆë¯¸ì˜ ì½œë¼ì´ë”ê°€ ë¶€ë”ªíˆë©´
+            GainExp(5000);
+            Debug.Log("ê²½í—˜ì¹˜ 5000 íšë“");
         }
     }
 
     public void GainExp(int amount)
     {
         expCurrent += amount;
-
-        CheckLevelUp();
     }
 
     public void CheckLevelUp()
     {
-        expLeft = (int)Mathf.Floor(expBase * Mathf.Pow(expMod, level));
-
-        if (expCurrent >= TO_LEVEL_UP)  
+        if (expCurrent >= TO_LEVEL_UP)
         {
+            expLeft = (int)Mathf.Floor(expBase * Mathf.Pow(expMod, level));
             expCurrent -= TO_LEVEL_UP;
             level++;
             levelCount++;
 
-            Debug.Log(level + "·¹º§·Î ·¹º§¾÷!");
+            Debug.Log(level + "ë ˆë²¨ë¡œ ë ˆë²¨ì—…!");
         }
     }
 
-    virtual public void Enhance()
+    public void Enhance()
     {
-        Time.timeScale = 0;
+        int i;
+        //0~4 ëœë¤ìˆ«ì ë½‘ëŠ” ì½”ë“œ
+        i = Random.Range(0, 5);
 
-        Debug.Log("°­È­");
+        Images = Resources.LoadAll<Sprite>("Upgrades");
+
+        //Image img1 = GameObject.Find("Canvas").transform.FindChild("UpgradePanel").transform.FindChild("Image1").GetComponent<Image>();
+        //img1.sprite = Images[i];
+
+        upgradePanel.OpenPanel();
+        Debug.Log("ê°•í™”");
     }
-    
+
+    public void LevelCountDown()
+    {
+        levelCount--;
+    }
+
 }

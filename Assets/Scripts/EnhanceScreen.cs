@@ -17,17 +17,11 @@ public class EnhanceScreen : MonoBehaviour
     {
         if (Time.timeScale == 0)
         {
-            EnhanceSc.transform.Find("Panel").gameObject.SetActive(true);
-            EnhanceSc.transform.Find("E1").gameObject.SetActive(true);
-            EnhanceSc.transform.Find("E2").gameObject.SetActive(true);
-            EnhanceSc.transform.Find("E3").gameObject.SetActive(true);
+            EnhanceSc.transform.Find("UpgradePanel").gameObject.SetActive(true);
         }
         else
         {
-            EnhanceSc.transform.Find("Panel").gameObject.SetActive(false);
-            EnhanceSc.transform.Find("E1").gameObject.SetActive(false);
-            EnhanceSc.transform.Find("E2").gameObject.SetActive(false);
-            EnhanceSc.transform.Find("E3").gameObject.SetActive(false);
+            EnhanceSc.transform.Find("UpgradePanel").gameObject.SetActive(false);
         }
     }
 }
