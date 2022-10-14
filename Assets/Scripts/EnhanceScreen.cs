@@ -4,21 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class EnhanceScreen : PlayerController
+public class EnhanceScreen : MonoBehaviour
 {
-    
-    public void Screen_zom_DDewar()
+    private GameObject EnhanceSc;
+
+    private void Start()
     {
-        if(TimeStop == true)
+        EnhanceSc = GameObject.Find("Canvas");
+    }
+
+    private void Update()
+    {
+        if (Time.timeScale == 0)
         {
-            gameObject.SetActive(true);
-            Debug.Log("¤»¤»");
+            EnhanceSc.transform.Find("Panel").gameObject.SetActive(true);
+            EnhanceSc.transform.Find("E1").gameObject.SetActive(true);
+            EnhanceSc.transform.Find("E2").gameObject.SetActive(true);
+            EnhanceSc.transform.Find("E3").gameObject.SetActive(true);
         }
         else
         {
-            gameObject.SetActive(false);
+            EnhanceSc.transform.Find("Panel").gameObject.SetActive(false);
+            EnhanceSc.transform.Find("E1").gameObject.SetActive(false);
+            EnhanceSc.transform.Find("E2").gameObject.SetActive(false);
+            EnhanceSc.transform.Find("E3").gameObject.SetActive(false);
         }
     }
-
-
 }
