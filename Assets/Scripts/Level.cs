@@ -8,14 +8,13 @@ using UnityEngine.UI;
 public class Level : MonoBehaviour
 {
     Sprite[] Images;
-    EnhanceList enhanceList;
 
     public int level = 1;
     public int levelCount = 0;
     public int expCurrent = 0;      //현재경험치
     public int expLeft = 1000;      //변수. 레벨업에 필요한 경험치
-    int expBase = 1000;      //상수. 레벨1→레벨2 필요한 경험치
-    float expMod = 1.21f;    //경험치 증가량 (지수)
+    int expBase = 1000;             //상수. 레벨1→레벨2 필요한 경험치
+    float expMod = 1.21f;           //경험치 증가량 (지수)
 
     public bool Wait = false;
 

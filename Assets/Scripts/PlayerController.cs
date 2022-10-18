@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
-    EnhanceList enhanceList;
+    CharacterStats stats;
     
     float walkSpeed = 10.0f;
     float jumpForce = 500.0f;
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         rigid = this.gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        enhanceList = this.gameObject.GetComponent<EnhanceList>();
+        stats = this.gameObject.GetComponent<CharacterStats>();
     }
 
     void Update()
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Enemy")&&!hasAttacked)
         {
-            enhanceList.HP--;
+            stats.TakeDamage();
             hasAttacked = true;
             Invoke("attackOn", 3);
             Debug.Log("¸ñ¼û -1");
