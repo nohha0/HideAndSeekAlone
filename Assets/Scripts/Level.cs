@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Level : MonoBehaviour
 {
+    Sprite[] Images;
+
     public int level = 1;
     public int levelCount = 0;
-    public int expCurrent = 0;      //ÇöÀç°æÇèÄ¡
-    public int expLeft = 1000;      //º¯¼ö. ·¹º§¾÷¿¡ ÇÊ¿äÇÑ °æÇèÄ¡
+    public int expCurrent = 0;      //í˜„ìž¬ê²½í—˜ì¹˜
+    public int expLeft = 1000;      //ë³€ìˆ˜. ë ˆë²¨ì—…ì— í•„ìš”í•œ ê²½í—˜ì¹˜
+    int expBase = 1000;             //ìƒìˆ˜. ë ˆë²¨1â†’ë ˆë²¨2 í•„ìš”í•œ ê²½í—˜ì¹˜
+    float expMod = 1.21f;           //ê²½í—˜ì¹˜ ì¦ê°€ëŸ‰ (ì§€ìˆ˜)
 
+    public bool Wait = false;
 
-    int expBase = 1000;      //»ó¼ö. ·¹º§1¡æ·¹º§2 ÇÊ¿äÇÑ °æÇèÄ¡
-    float expMod = 1.21f;    //°æÇèÄ¡ Áõ°¡·® (Áö¼ö)
+    [SerializeField] UpgradePanelManager upgradePanel;
 
     int TO_LEVEL_UP
     {
@@ -21,63 +28,65 @@ public class Level : MonoBehaviour
         }
     }
 
-
-    void Update()
+    private void Update()
     {
-        if (expCurrent >= expLeft)
+        CheckLevelUp();
+
+        if (levelCount > 0 && Wait==false)
         {
-            CheckLevelUp();
+            Wait = true;
+            Enhance();
         }
 
-        if (levelCount > 0)
-        {
-            while (levelCount > 0)
-            {
-                Enhance();
-                levelCount--;
-            }
-        }
-
-        //Ä³¸¯ÅÍ ±âº»°ø°Ý
         if (Input.GetKeyDown(KeyCode.X))
         {
-            //Ãß°¡)if ÇÃ·¹ÀÌ¾îÀÇ ¹«±â ÄÝ¶óÀÌ´õ¿Í ¿¡³Ê¹ÌÀÇ ÄÝ¶óÀÌ´õ°¡ ºÎµúÈ÷¸é
-            GainExp(500);
-            Debug.Log("°æÇèÄ¡ 500 È¹µæ");
-        }
-
-        if (Time.timeScale == 0 && Input.GetMouseButtonDown(0))
-        {
-            Time.timeScale = 1;
+            GainExp(10000);
+            Debug.Log("ê²½í—˜ì¹˜ 10000 íšë“");
         }
     }
 
     public void GainExp(int amount)
     {
         expCurrent += amount;
-
-        CheckLevelUp();
     }
 
     public void CheckLevelUp()
     {
-        expLeft = (int)Mathf.Floor(expBase * Mathf.Pow(expMod, level));
-
-        if (expCurrent >= TO_LEVEL_UP)  
+        if (expCurrent >= TO_LEVEL_UP)
         {
+            expLeft = (int)Mathf.Floor(expBase * Mathf.Pow(expMod, level));
             expCurrent -= TO_LEVEL_UP;
             level++;
             levelCount++;
-
-            Debug.Log(level + "·¹º§·Î ·¹º§¾÷!");
         }
     }
 
-    virtual public void Enhance()
+    public void Enhance()
     {
-        Time.timeScale = 0;
+        levelCount--;
 
-        Debug.Log("°­È­");
+        List<int> list = new List<int>() { 0, 1, 2, 3, 4 };
+        
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int rnd = Random.Range(0, i);
+            int temp = list[i];
+
+            list[i] = list[rnd];
+            list[rnd] = temp;
+        }
+
+        Images = Resources.LoadAll<Sprite>("Upgrades");
+
+        upgradePanel.OpenPanel();
+
+        Image img1 = GameObject.Find("Image1").GetComponent<Image>();
+        Image img2 = GameObject.Find("Image2").GetComponent<Image>();
+        Image img3 = GameObject.Find("Image3").GetComponent<Image>();
+
+        img1.sprite = Images[list[0]];
+        img2.sprite = Images[list[1]];
+        img3.sprite = Images[list[2]];
+
     }
-    
 }

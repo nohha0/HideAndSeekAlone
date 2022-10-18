@@ -27,7 +27,6 @@ public class NewStage : MonoBehaviour
             }
             else
             { }
-
         }
     }
 }
