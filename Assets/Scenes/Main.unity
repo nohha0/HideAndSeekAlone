@@ -313,10 +313,10 @@ GameObject:
   - component: {fileID: 219763296}
   - component: {fileID: 219763298}
   - component: {fileID: 219763299}
-  - component: {fileID: 219763302}
   - component: {fileID: 219763301}
   - component: {fileID: 219763303}
   - component: {fileID: 219763305}
+  - component: {fileID: 219763306}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -487,26 +487,6 @@ MonoBehaviour:
   expLeft: 1000
   Wait: 0
   upgradePanel: {fileID: 1522714297}
---- !u!95 &219763302
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219763293}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9b31858d68d948445a9fbdcac40b8155, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &219763303
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -574,6 +554,26 @@ MonoBehaviour:
   btn1: {fileID: 2008691235}
   btn2: {fileID: 1867044468}
   btn3: {fileID: 448232157}
+--- !u!95 &219763306
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219763293}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: af4cf91a67bf1bc418ff30c4828790b2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &271019940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2145,7 +2145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4f4a84d85369d4e948ea629ce9ac94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnhanceSc: {fileID: 0}
 --- !u!1 &1294961774
 GameObject:
   m_ObjectHideFlags: 0
