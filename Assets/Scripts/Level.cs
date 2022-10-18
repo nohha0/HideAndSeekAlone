@@ -7,13 +7,16 @@ using UnityEngine.UI;
 
 public class Level : MonoBehaviour
 {
-    private Sprite[] Images;
+    Sprite[] Images;
+    EnhanceList enhanceList;
+
     public int level = 1;
     public int levelCount = 0;
     public int expCurrent = 0;      //현재경험치
     public int expLeft = 1000;      //변수. 레벨업에 필요한 경험치
     int expBase = 1000;      //상수. 레벨1→레벨2 필요한 경험치
     float expMod = 1.21f;    //경험치 증가량 (지수)
+
     public bool Wait = false;
 
     [SerializeField] UpgradePanelManager upgradePanel;
@@ -34,13 +37,10 @@ public class Level : MonoBehaviour
         {
             Wait = true;
             Enhance();
-            //Enhance 1번 - closePanel 1번
         }
 
-        //캐릭터 기본공격
         if (Input.GetKeyDown(KeyCode.X))
         {
-            //추가)if 플레이어의 무기 콜라이더와 에너미의 콜라이더가 부딪히면
             GainExp(10000);
             Debug.Log("경험치 10000 획득");
         }
@@ -88,7 +88,6 @@ public class Level : MonoBehaviour
         img1.sprite = Images[list[0]];
         img2.sprite = Images[list[1]];
         img3.sprite = Images[list[2]];
-        //여기서 타임이 끝날때까지 기다리는게 목적
 
     }
 }

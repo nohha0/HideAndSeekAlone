@@ -20,11 +20,9 @@ public class UpgradePanelManager : MonoBehaviour
 
     public void ClosePanel()
     {
+        //여기서 StepUp
         level.Wait = false;
         Time.timeScale = 1f;
         panel.SetActive(false);
-
-        //여기서 멈추고 있던 원인을 제거
-
     }
 }
