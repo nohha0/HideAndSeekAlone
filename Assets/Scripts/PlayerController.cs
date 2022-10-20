@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     CharacterStats stats;
     Animator animator;
     
-    float walkSpeed = 10.0f;
+    float walkSpeed = 500.0f;
     float jumpForce = 500.0f;
     public int jumpCount = 0;
     public bool isLongJump = false;
