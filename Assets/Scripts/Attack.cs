@@ -6,28 +6,23 @@ public class Attack : MonoBehaviour
 {
 
     PlayerController Playstats;
-    public bool attacked = false;
+    Animator animator;
 
 
     void Start()
     {
-        Animator animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         
+        if(Input.GetKeyDown(KeyCode.C)) // 공격 애니메이션
+        {
+            Debug.Log("공격! attack true");
+            animator.SetTrigger("attack");
+        }
     }
 
-    void AttackTrue()
-    {
-        attacked = true;
-    }
-    void AttackFalse()
-    {
-        attacked = false;
-    }
-    void SetAttackSpeed(float speed)
-    {
-    }
+    
 }
