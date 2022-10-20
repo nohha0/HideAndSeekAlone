@@ -4,34 +4,27 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] Transform targetDestination;
-    GameObject targetGameObject;
-    [SerializeField] float speed;
+    public int HP = 100;
+    CharacterStats AttPow;
 
-    Rigidbody2D rigid;
 
-    void Awake()
+    void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
-        targetGameObject = targetDestination.gameObject;
+        
     }
 
-    void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
-        Vector3 direction = (targetDestination.position - transform.position).normalized;
-        rigid.velocity = direction * speed;
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject == targetGameObject)
+        if (other.gameObject.CompareTag("thorn"))
         {
-            Attack();
+            Debug.Log("피격");
         }
     }
 
-    private void Attack()
-    {
-        Debug.Log("플레이어 공격!");
-    }
 }
