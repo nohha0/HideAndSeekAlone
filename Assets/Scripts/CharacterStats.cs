@@ -7,9 +7,9 @@ public class CharacterStats : MonoBehaviour
 {
     [SerializeField]
     Button btn1, btn2, btn3;
-    double attackSpeed;          //공격속도
+    protected float attackSpeed = 1.5f;          //공격속도
     float attackRange;           //공격범위
-    int attackPower = 20;        //공격력
+    protected int attackPower = 20;        //공격력
     int avoidanceRate = 0;       //회피율
     int maxHP = 4;               //최대 목숨
     int currentHP;               //현재 목숨
