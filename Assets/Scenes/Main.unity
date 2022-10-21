@@ -453,7 +453,7 @@ MonoBehaviour:
   btn2: {fileID: 0}
   btn3: {fileID: 0}
   pos: {fileID: 291776351}
-  boxSize: {x: 100, y: 50}
+  boxSize: {x: 103.85, y: 27.1}
 --- !u!114 &219763308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1217,7 +1217,7 @@ GameObject:
   - component: {fileID: 1197494597}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

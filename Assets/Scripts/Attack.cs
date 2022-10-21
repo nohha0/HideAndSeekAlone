@@ -26,9 +26,12 @@ public class Attack : CharacterStats
         {
 
             Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
-            foreach (Collider2D item in collider2Ds)
+            foreach (Collider2D collider in collider2Ds)
             {
-                Debug.Log("АјАн");
+                if(collider.tag =="Enemy")
+                {
+                    collider.GetComponent<Enemy>().TakeDamage(attackPower);
+                }
             }
 
             animator.SetTrigger("attack");
