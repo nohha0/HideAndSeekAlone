@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     
     float walkSpeed = 500.0f;
-    float jumpForce = 5000.0f;
+    float jumpForce = 2000.0f;
     public int jumpCount = 0;
     public bool isLongJump = false;
     
@@ -63,10 +63,10 @@ public class PlayerController : MonoBehaviour
     //Rigidbody(물리연산)를 이용할 때는 FixedUpdate에 작성
     private void FixedUpdate()
     {
-        if (isLongJump && rigid.velocity.y>0)   
-            rigid.gravityScale = 10.0f;
+        if (isLongJump) //rigid.velocity.y 조건 잠깐 빼놓음
+            rigid.gravityScale = 80.0f;
         else
-            rigid.gravityScale = 20.0f;
+            rigid.gravityScale = 100.0f;
 
 
     }
@@ -79,7 +79,11 @@ public class PlayerController : MonoBehaviour
             this.jumpCount = 0;
             animator.SetBool("jump", false);
         }
-        if (other.gameObject.CompareTag("Enemy")&&!hasAttacked)
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy") && !hasAttacked)
         {
             stats.TakeDamage();
             hasAttacked = true;
@@ -91,6 +95,7 @@ public class PlayerController : MonoBehaviour
     //점프
     public void Jump()
     {
+        rigid.velocity = new Vector2(rigid.velocity.x, 0f);
         rigid.AddForce(new Vector2(0.0f, jumpForce));
         jumpCount++;
         
