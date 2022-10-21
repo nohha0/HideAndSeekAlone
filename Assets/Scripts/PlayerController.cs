@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     Animator animator;
     
     float walkSpeed = 500.0f;
-    float jumpForce = 500.0f;
+    float jumpForce = 5000.0f;
     public int jumpCount = 0;
     public bool isLongJump = false;
     
@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        animator.SetBool("run", false);
         //캐릭터 이동/점프
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
         {
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
             Vector2 vec = transform.position;
             vec += new Vector2(-walkSpeed * Time.deltaTime, 0.0f);
             transform.position = vec;
+            animator.SetBool("run", true);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour
             Vector2 vec = transform.position;
             vec += new Vector2(walkSpeed * Time.deltaTime, 0.0f);
             transform.position = vec;
+            animator.SetBool("run", true);
         }
         
     }
@@ -61,21 +64,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (isLongJump && rigid.velocity.y>0)   
-            rigid.gravityScale = 2.0f;
+            rigid.gravityScale = 10.0f;
         else
-            rigid.gravityScale = 4.0f;
+            rigid.gravityScale = 20.0f;
 
-        //점프가 끝날때
-        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down * 1.5f, 1.5f, 
-            LayerMask.GetMask("ground")); //그라운드 레이어만 체크
-        if(rayHit.collider !=null) //콜라이더가 닿은게 있음
-        {
-            if(rayHit.distance <0.96)
-            {
-                Debug.Log("착지함 jump false");
-                animator.SetBool("jump", false);
-            }
-        }
 
     }
 
@@ -85,6 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("충돌");
             this.jumpCount = 0;
+            animator.SetBool("jump", false);
         }
         if (other.gameObject.CompareTag("Enemy")&&!hasAttacked)
         {
@@ -106,16 +99,6 @@ public class PlayerController : MonoBehaviour
     public void attackOn()
     {
         hasAttacked = false;
-    }
-    //애니메이션 전환
-    void RunAniCon()
-    {
-        if(Mathf.Abs(rigid.velocity.x)<0.4)
-        {
-            animator.SetBool("run", false);
-        }
-        else
-            animator.SetBool("run", true);
     }
     
 
