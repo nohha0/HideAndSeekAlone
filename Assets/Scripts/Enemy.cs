@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
     GameObject targetGameObject;
 
     [SerializeField] float speed;
-    public int HP = 100;
+    public int HP;
+    public bool attacked = false;
 
     CharacterStats AttPow;
 
@@ -22,8 +23,8 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 direction = (targetDestination.position - transform.position).normalized;
-        rigid.velocity = direction * speed;
+        Vector2 direction = (targetDestination.position - transform.position).normalized;
+        rigid.velocity = (direction * speed);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -47,14 +48,25 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        HP -= damage;
+        if (!attacked)
+        {
+            HP -= damage;
+            attacked = true;
+            Invoke("attackedOn", 0.5f);
+        }
     }
+
     private void Update()
     {
         if(HP<=0)
         {
             DIE();
         }
+    }
+
+    public void attackedOn()
+    {
+        attacked = false;
     }
 
     void DIE()

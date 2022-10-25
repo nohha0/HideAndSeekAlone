@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public bool hasAttacked = false;   //피격 중복 금지
     public bool dashOn = false;
   
-    
+
     void Start()
     {
         rigid = this.gameObject.GetComponent<Rigidbody2D>();
@@ -72,7 +72,6 @@ public class PlayerController : MonoBehaviour
             Dash();
             Invoke("DashOn", 1);
         }
-
     }
 
     //Rigidbody(물리연산)를 이용할 때는 FixedUpdate에 작성
@@ -128,8 +127,6 @@ public class PlayerController : MonoBehaviour
         {
             rigid.AddForce(new Vector2(dashSpeed, dashUpForce));
         }
-
-
     }
 
     public void attackOn()

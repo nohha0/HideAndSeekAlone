@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - NextStage
   - thorn
+  - FireRange
   layers:
   - Default
   - TransparentFX
