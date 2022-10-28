@@ -8,25 +8,31 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer spriteRenderer;
     CharacterStats stats;
     Animator animator;
-    
-    float walkSpeed = 500.0f;
-    float jumpForce = 500.0f;
+
+    public float walkSpeed;
+    public float jumpForce;
+    public float dashSpeed;
+    public float dashUpForce;
+    int direction;
+
     public int jumpCount = 0;
     public bool isLongJump = false;
-    
     public bool hasAttacked = false;   //피격 중복 금지
+    public bool dashOn = false;
   
-    
+
     void Start()
     {
         rigid = this.gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         stats = this.gameObject.GetComponent<CharacterStats>();
-        animator = GetComponent<Animator>();  
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        animator.SetBool("run", false);
+
         //캐릭터 이동/점프
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
         {
@@ -42,41 +48,39 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
+            direction = 1;
             spriteRenderer.flipX = false;
             Vector2 vec = transform.position;
             vec += new Vector2(-walkSpeed * Time.deltaTime, 0.0f);
             transform.position = vec;
+            animator.SetBool("run", true);
         }
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
+            direction = 2;
             spriteRenderer.flipX = true;
             Vector2 vec = transform.position;
             vec += new Vector2(walkSpeed * Time.deltaTime, 0.0f);
             transform.position = vec;
+            animator.SetBool("run", true);
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !dashOn)
+        {
+            dashOn = true;
+            Dash();
+            Invoke("DashOn", 1);
+        }
     }
 
     //Rigidbody(물리연산)를 이용할 때는 FixedUpdate에 작성
     private void FixedUpdate()
     {
-        if (isLongJump && rigid.velocity.y>0)   
-            rigid.gravityScale = 2.0f;
+        if (isLongJump) //rigid.velocity.y 조건 잠깐 빼놓음
+            rigid.gravityScale = 15.0f;
         else
-            rigid.gravityScale = 4.0f;
-
-        //점프가 끝날때
-        RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down * 1.5f, 1.5f, 
-            LayerMask.GetMask("ground")); //그라운드 레이어만 체크
-        if(rayHit.collider !=null) //콜라이더가 닿은게 있음
-        {
-            if(rayHit.distance <0.96)
-            {
-                Debug.Log("착지함 jump false");
-                animator.SetBool("jump", false);
-            }
-        }
-
+            rigid.gravityScale = 20.0f;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -85,8 +89,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("충돌");
             this.jumpCount = 0;
+            animator.SetBool("jump", false);
         }
-        if (other.gameObject.CompareTag("Enemy")&&!hasAttacked)
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy") && !hasAttacked)
         {
             stats.TakeDamage();
             hasAttacked = true;
@@ -98,26 +107,35 @@ public class PlayerController : MonoBehaviour
     //점프
     public void Jump()
     {
+        rigid.velocity = new Vector2(rigid.velocity.x, 0f);
         rigid.AddForce(new Vector2(0.0f, jumpForce));
         jumpCount++;
+    }
+
+    public void Dash()
+    {
+        Debug.Log("대쉬");
+
+        rigid.velocity = Vector2.zero;
         
+        if (direction == 1)
+        {
+            rigid.AddForce(new Vector2(-dashSpeed, dashUpForce));
+        }
+
+        if (direction == 2)
+        {
+            rigid.AddForce(new Vector2(dashSpeed, dashUpForce));
+        }
     }
 
     public void attackOn()
     {
         hasAttacked = false;
     }
-    //애니메이션 전환
-    void RunAniCon()
-    {
-        if(Mathf.Abs(rigid.velocity.x)<0.4)
-        {
-            animator.SetBool("run", false);
-        }
-        else
-            animator.SetBool("run", true);
-    }
-    
 
-    
+    public void DashOn()
+    {
+        dashOn = false;
+    }    
 }
