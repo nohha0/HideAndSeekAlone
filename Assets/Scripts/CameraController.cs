@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-
     GameObject player;
+    public float space;
 
     void Start()
     {
@@ -17,6 +17,6 @@ public class CameraController : MonoBehaviour
         Vector3 PlayerPos = player.transform.position;
 
         transform.position = new Vector3
-            (PlayerPos.x, PlayerPos.y + 10f, transform.position.z);
+            (PlayerPos.x, PlayerPos.y + space, transform.position.z);
     }
 }
