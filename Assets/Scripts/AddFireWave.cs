@@ -9,6 +9,7 @@ public class AddFireWave : MonoBehaviour
     public Transform pos;
     public float cooltime;
     private float curtime;
+
     void Start()
     {
         

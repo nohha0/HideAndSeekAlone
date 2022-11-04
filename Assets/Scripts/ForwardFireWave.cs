@@ -7,6 +7,8 @@ public class ForwardFireWave : MonoBehaviour
     SpriteRenderer rend;
     public SpriteRenderer plarerRenderer;  //플레이어 랜더러 가져오기
     public float speed;
+
+
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] Transform targetDestination;
     GameObject targetGameObject;
 
     [SerializeField] float speed;
@@ -14,17 +14,19 @@ public class Enemy : MonoBehaviour
     CharacterStats AttPow;
 
     Rigidbody2D rigid;
+    SpriteRenderer spriteRend;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        targetGameObject = targetDestination.gameObject;
+        spriteRend = GetComponent<SpriteRenderer>();
+        targetGameObject = GameObject.Find("Player").gameObject;
     }
 
     void FixedUpdate()
     {
-        Vector2 direction = (targetDestination.position - transform.position).normalized;
-        rigid.velocity = (direction * speed);
+        Vector2 direction = (targetGameObject.transform.position - transform.position).normalized;
+        rigid.velocity = new Vector2(direction.x * speed, 0f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -33,12 +35,6 @@ public class Enemy : MonoBehaviour
         {
             Attack();
         }
-        /*
-        if (other.gameObject.CompareTag("thorn"))
-        {
-            Debug.Log("ÇÇ°Ý");
-        }
-        */
     }
 
     private void Attack()
@@ -50,9 +46,11 @@ public class Enemy : MonoBehaviour
     {
         if (!attacked)
         {
+            spriteRend.color = new Color(0.5f, 0.5f, 0.5f);
             HP -= damage;
             attacked = true;
-            Invoke("attackedOn", 0.5f);
+            Invoke("attackedOn", 1f);
+            Invoke("SpriteOn", 0.1f);
         }
     }
 
@@ -62,11 +60,21 @@ public class Enemy : MonoBehaviour
         {
             DIE();
         }
+
+        if (rigid.velocity.x >= 0) 
+            spriteRend.flipX = true;
+        else 
+            spriteRend.flipX = false;
     }
 
     public void attackedOn()
     {
         attacked = false;
+    }
+
+    public void SpriteOn()
+    {
+        spriteRend.color = new Color(1, 1, 1);
     }
 
     void DIE()

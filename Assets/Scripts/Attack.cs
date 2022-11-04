@@ -8,6 +8,8 @@ public class Attack : CharacterStats
     Animator animator;
     float curTime;
     bool fireRangeOn = false;
+    public GameObject rangeObject;
+    GameObject range_object;
 
     //콜라이더 위치 
     public Transform pos;
@@ -38,29 +40,18 @@ public class Attack : CharacterStats
             curTime -= Time.deltaTime;
         }
 
+        //--------------------------------------------------------------------------
         if (Input.GetKeyDown(KeyCode.V)&&!fireRangeOn)
         {
             fireRangeOn = true;
+            Vector2 playerPos = new Vector2(transform.position.x, -42f);
+            range_object = Instantiate(rangeObject, playerPos, transform.rotation);
             Invoke("fireRangeOff", 3);
         }
-
-        if (fireRangeOn)
-            transform.GetChild(1).gameObject.SetActive(true);
-        else
-            transform.GetChild(1).gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (fireRangeOn)
-        {   
-            if (collision.tag == "Enemy")
-            {
-                collision.GetComponent<Enemy>().TakeDamage(200);
-                Debug.Log("fireRange");
-            }
-        }
-    }
+    
+    //--------------------------------------------------------------------------
 
     //콜라이더 확인 그림
     private void OnDrawGizmos()
@@ -72,5 +63,6 @@ public class Attack : CharacterStats
     public void fireRangeOff()
     {
         fireRangeOn = false;
+        Destroy(range_object);
     }
 }
