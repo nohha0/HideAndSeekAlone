@@ -23,9 +23,9 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rigid = this.gameObject.GetComponent<Rigidbody2D>();
-        spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        stats = this.gameObject.GetComponent<CharacterStats>();
+        rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        stats = GetComponent<CharacterStats>();
         animator = GetComponent<Animator>();
     }
 
