@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform    targetGameObject;
+    
     public float        speed;
     public int          HP;
     public bool         attacked = false;
+    public float        mag;
+
+    Transform           targetGameObject;
     Rigidbody2D         rigid;
     SpriteRenderer      spriteRend;
-
-    CharacterStats AttPow;
+    Animator            animator;
 
 
     void Awake()
@@ -20,6 +22,7 @@ public class Enemy : MonoBehaviour
         targetGameObject = GameObject.FindWithTag("Player").transform;
         rigid = GetComponent<Rigidbody2D>();
         spriteRend = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -29,16 +32,29 @@ public class Enemy : MonoBehaviour
             DIE();
         }
 
-        if (rigid.velocity.x >= 0)
-            spriteRend.flipX = true;
-        else
-            spriteRend.flipX = false;
     }
 
     void FixedUpdate()
     {
-        //Vector2 direction = (targetGameObject.position - transform.position).normalized;
-        //rigid.velocity = new Vector2(direction.x * speed, 0f);
+        if((targetGameObject.position - transform.position).magnitude <= mag)
+        {
+            Vector2 direction = (targetGameObject.position - transform.position).normalized;
+            rigid.velocity = new Vector2(direction.x * speed, 0f);
+        }
+        else
+        {
+            rigid.velocity = Vector2.zero;
+        }
+
+        if (rigid.velocity.x > 0)
+            spriteRend.flipX = true;
+        else if (rigid.velocity.x < 0)
+            spriteRend.flipX = false;
+
+        if (rigid.velocity.magnitude == 0)
+            animator.SetBool("walk", false);
+        else
+            animator.SetBool("walk", true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
