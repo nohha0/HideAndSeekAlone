@@ -2,27 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Enemy : MonoBehaviour
 {
-    
     public float        speed;
     public int          HP;
     public bool         attacked = false;
     public float        mag;
 
-    Transform           targetGameObject;
-    Rigidbody2D         rigid;
-    SpriteRenderer      spriteRend;
-    Animator            animator;
+    protected GameObject targetGameObject;
+    protected Rigidbody2D         rigid;
+    protected SpriteRenderer spriteRend;
+    protected Animator animator;
 
 
     void Awake()
     {
-        targetGameObject = GameObject.FindWithTag("Player").transform;
+        targetGameObject = GameObject.FindWithTag("Player");
         rigid = GetComponent<Rigidbody2D>();
         spriteRend = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        //InvokeRepeating("UpdateTarget", 0f, 0.25f); //0초 후에 0.25초마다 함수 실행
     }
 
     private void Update()
@@ -32,29 +33,12 @@ public class Enemy : MonoBehaviour
             DIE();
         }
 
+        UpdateTarget();
     }
 
     void FixedUpdate()
     {
-        if((targetGameObject.position - transform.position).magnitude <= mag)
-        {
-            Vector2 direction = (targetGameObject.position - transform.position).normalized;
-            rigid.velocity = new Vector2(direction.x * speed, 0f);
-        }
-        else
-        {
-            rigid.velocity = Vector2.zero;
-        }
-
-        if (rigid.velocity.x > 0)
-            spriteRend.flipX = true;
-        else if (rigid.velocity.x < 0)
-            spriteRend.flipX = false;
-
-        if (rigid.velocity.magnitude == 0)
-            animator.SetBool("walk", false);
-        else
-            animator.SetBool("walk", true);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -97,4 +81,26 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    virtual protected void UpdateTarget()     //충돌 범위
+    {
+        if ((targetGameObject.transform.position - transform.position).magnitude <= mag)
+        {
+            Vector2 direction = (targetGameObject.transform.position - transform.position).normalized;
+            rigid.velocity = new Vector2(direction.x * speed, 0f);
+        }
+        else
+        {
+            rigid.velocity = Vector2.zero;
+        }
+
+        if (rigid.velocity.x > 0)
+            spriteRend.flipX = true;
+        else if (rigid.velocity.x < 0)
+            spriteRend.flipX = false;
+
+        if (rigid.velocity.magnitude == 0)
+            animator.SetBool("walk", false);
+        else
+            animator.SetBool("walk", true);
+    }
 }
