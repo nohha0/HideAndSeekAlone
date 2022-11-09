@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
 {
     public float        speed;
     public int          HP;
-    public bool         attacked = false;
+    public bool         attacked;
     public float        mag;
 
     protected GameObject targetGameObject;
@@ -19,11 +19,11 @@ public class Enemy : MonoBehaviour
 
     void Awake()
     {
+        attacked = false;
         targetGameObject = GameObject.FindWithTag("Player");
         rigid = GetComponent<Rigidbody2D>();
         spriteRend = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        //InvokeRepeating("UpdateTarget", 0f, 0.25f); //0초 후에 0.25초마다 함수 실행
     }
 
     private void Update()

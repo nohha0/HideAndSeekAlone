@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class ClockEnemy : Enemy
+public class FlyingMonster : Enemy
 {
     public Transform targetDestination;
     public Transform pos;     //해당 에너미의 위치좌표 저장 자식 클래스에서도 사용
