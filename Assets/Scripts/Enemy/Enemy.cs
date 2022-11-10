@@ -6,13 +6,13 @@ using static UnityEditor.PlayerSettings;
 
 public class Enemy : MonoBehaviour
 {
-    public float        speed;
-    public int          HP;
-    public bool         attacked;
-    public float        mag;
+    public float speed;
+    public int HP;
+    public bool attacked;
+    public float mag;
 
     protected GameObject targetGameObject;
-    protected Rigidbody2D         rigid;
+    protected Rigidbody2D rigid;
     protected SpriteRenderer spriteRend;
     protected Animator animator;
 
@@ -28,15 +28,29 @@ public class Enemy : MonoBehaviour
 
     virtual protected void Update()
     {
-        if (HP <= 0)
-        {
-            DIE();
-        }
-
+        if (HP <= 0) DIE();
         UpdateTarget();
     }
 
-    public void TakeDamage(int damage)
+    virtual protected void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            Attack();
+        }
+    }
+
+    public void Attack()
+    {
+        Debug.Log("플레이어 공격!");
+    }
+
+    virtual protected void UpdateTarget()
+    {
+        //내용은 ~Monster 자식 클래스에서 구현
+    }
+
+    virtual public void TakeDamage(int damage)
     {
         if (!attacked)
         {
@@ -58,13 +72,10 @@ public class Enemy : MonoBehaviour
         spriteRend.color = new Color(1, 1, 1);
     }
 
-    protected void DIE()
+    public void DIE()
     {
         Destroy(gameObject);
     }
 
-    virtual protected void UpdateTarget()
-    {
-        //자식 클래스에서 구현
-    }
+
 }
