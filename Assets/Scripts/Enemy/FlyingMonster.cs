@@ -8,16 +8,11 @@ public class FlyingMonster : Enemy
     public Transform targetDestination;
     public Transform pos;     //해당 에너미의 위치좌표 저장 자식 클래스에서도 사용
 
-    void Start()
+    override protected void Start()
     {
+        base.Start();
         targetGameObject = targetDestination.gameObject;
         //InvokeRepeating("UpdateTarget", 0f, 0.25f); //0초 후에 0.25초마다 함수 실행
-    }
-
-
-    void Update()
-    {
-        UpdateTarget();
     }
 
     override protected void UpdateTarget()
