@@ -41,19 +41,6 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            Attack();
-        }
-    }
-
-    private void Attack()
-    {
-        Debug.Log("플레이어 공격!");
-    }
-
     public void TakeDamage(int damage)
     {
         if (!attacked)
@@ -76,7 +63,7 @@ public class Enemy : MonoBehaviour
         spriteRend.color = new Color(1, 1, 1);
     }
 
-    void DIE()
+    protected void DIE()
     {
         Destroy(gameObject);
     }

@@ -15,6 +15,10 @@ public class SetLight : FlyingMonster
     // Update is called once per frame
     void Update()
     {
+        if (HP <= 0)
+        {
+            DIE();
+        }
         UpdateTarget();
         if(curtime <= 0&&SetOn)
         {

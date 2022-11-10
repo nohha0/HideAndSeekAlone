@@ -8,7 +8,7 @@ public class DashMonster : FlyingMonster
     bool setLook = true;
     float cooltime = 4;
     float curtime;
-    float Dashspeed = 80;
+    float Dashspeed = 110;
 
     void Start()
     {
@@ -18,6 +18,10 @@ public class DashMonster : FlyingMonster
     // Update is called once per frame
     void Update()
     {
+        if (HP <= 0)
+        {
+            DIE();
+        }
         UpdateTarget();
 
         if(curtime <=0)
@@ -38,6 +42,4 @@ public class DashMonster : FlyingMonster
         curtime = cooltime;
         setLook = true;
     }
-
-
 }

@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Platform"))
         {
-            Debug.Log("Ãæµ¹");
             this.jumpCount = 0;
             animator.SetBool("jump", false);
         }
@@ -137,5 +136,9 @@ public class PlayerController : MonoBehaviour
     public void DashOn()
     {
         dashOn = false;
-    }    
+    }
+    void DIE()
+    {
+        Destroy(gameObject);
+    }
 }
