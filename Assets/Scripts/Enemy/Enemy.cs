@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     protected Animator animator;
 
 
-    virtual protected void Start()
+    void Awake()
     {
         attacked = false;
         targetGameObject = GameObject.FindWithTag("Player");
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    virtual protected void Update()
+    private void Update()
     {
         if (HP <= 0)
         {
@@ -34,6 +34,11 @@ public class Enemy : MonoBehaviour
         }
 
         UpdateTarget();
+    }
+
+    void FixedUpdate()
+    {
+        
     }
 
     public void TakeDamage(int damage)
@@ -63,8 +68,26 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    virtual protected void UpdateTarget()
+    virtual protected void UpdateTarget()     //충돌 범위
     {
-        //자식 클래스에서 구현
+        if ((targetGameObject.transform.position - transform.position).magnitude <= mag)
+        {
+            Vector2 direction = (targetGameObject.transform.position - transform.position).normalized;
+            rigid.velocity = new Vector2(direction.x * speed, 0f);
+        }
+        else
+        {
+            rigid.velocity = Vector2.zero;
+        }
+
+        if (rigid.velocity.x > 0)
+            spriteRend.flipX = true;
+        else if (rigid.velocity.x < 0)
+            spriteRend.flipX = false;
+
+        if (rigid.velocity.magnitude == 0)
+            animator.SetBool("walk", false);
+        else
+            animator.SetBool("walk", true);
     }
 }
