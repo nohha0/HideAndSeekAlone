@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Platform"))
         {
-            Debug.Log("Ãæµ¹");
             this.jumpCount = 0;
             animator.SetBool("jump", false);
         }

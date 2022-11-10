@@ -38,6 +38,7 @@ public class ForwardFireWave : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
     void XFcon()
     {
         if (settime == 2f && player.GetComponent<SpriteRenderer>().flipX)
@@ -56,7 +57,13 @@ public class ForwardFireWave : MonoBehaviour
         }
 
     }
-
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            collision.GetComponent<Enemy>().TakeDamage(200);
+        }
+    }
 
 
 }
