@@ -22,12 +22,12 @@ public class Attack : CharacterStats
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C)&&curTime <=0) // 공격 애니메이션
+        if (Input.GetKeyDown(KeyCode.C) && curTime <=0) // 공격 애니메이션
         {
             Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(pos.position, boxSize, 0);
             foreach (Collider2D collider in collider2Ds)
             {
-                if(collider.tag =="Enemy")
+                if(collider.tag == "Enemy")
                 {
                     collider.GetComponent<Enemy>().TakeDamage(attackPower);
                 }

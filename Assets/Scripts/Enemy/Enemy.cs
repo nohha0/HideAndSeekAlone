@@ -11,10 +11,10 @@ public class Enemy : MonoBehaviour
     public bool         attacked;
     public float        mag;
 
-    protected GameObject targetGameObject;
-    protected Rigidbody2D         rigid;
-    protected SpriteRenderer spriteRend;
-    protected Animator animator;
+    protected GameObject        targetGameObject;
+    protected Rigidbody2D       rigid;
+    protected SpriteRenderer    spriteRend;
+    protected Animator          animator;
 
 
     virtual protected void Start()

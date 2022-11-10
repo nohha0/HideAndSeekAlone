@@ -66,18 +66,6 @@ public class JumpingMonster : Enemy
             animator.SetBool("walk", true);
     }
 
-    override public void TakeDamage(int damage)
-    {
-        if (!attacked)
-        {
-            spriteRend.color = new Color(0.5f, 0.5f, 0.5f);
-            HP -= damage;
-            attacked = true;
-            Invoke("attackedOn", 1f);
-            Invoke("SpriteOn", 0.1f);
-        }
-    }
-
     public void OffWalk()
     {
         onWalk = false;
