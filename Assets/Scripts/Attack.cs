@@ -40,11 +40,10 @@ public class Attack : CharacterStats
             curTime -= Time.deltaTime;
         }
 
-        //--------------------------------------------------------------------------
-        if (Input.GetKeyDown(KeyCode.V)&&!fireRangeOn)
+        if (Input.GetKeyDown(KeyCode.V) && !fireRangeOn)
         {
             fireRangeOn = true;
-            Vector2 playerPos = new Vector2(transform.position.x, -42f);
+            Vector2 playerPos = new Vector2(transform.position.x, transform.position.y + 0.5f);
             range_object = Instantiate(rangeObject, playerPos, transform.rotation);
             Invoke("fireRangeOff", 3);
         }
