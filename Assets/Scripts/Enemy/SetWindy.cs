@@ -35,10 +35,8 @@ public class SetWindy : MonoBehaviour
         {
             if (!rend.flipX)  //캐릭터가 오른쪽에 있을경우  
             {
-                Debug.Log("확인");
                 if (curtime <= 0 && i < 3)
                 {
-                    Debug.Log("아래");
                     Vector3 setpos = new Vector3(transform.position.x + 10, transform.position.y, transform.position.z);
                     Instantiate(Windywave, setpos, transform.rotation);
                     curtime = delray;

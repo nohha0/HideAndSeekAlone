@@ -1596,8 +1596,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   levelCount: 0
-  expCurrent: 0
-  expLeft: 1000
   Wait: 0
   upgradePanel: {fileID: 1522714297}
 --- !u!114 &219763305
@@ -1615,6 +1613,7 @@ MonoBehaviour:
   btn1: {fileID: 2008691235}
   btn2: {fileID: 1867044468}
   btn3: {fileID: 448232157}
+  currentHP: 0
 --- !u!95 &219763306
 Animator:
   serializedVersion: 4
@@ -1650,6 +1649,7 @@ MonoBehaviour:
   btn1: {fileID: 0}
   btn2: {fileID: 0}
   btn3: {fileID: 0}
+  currentHP: 0
   rangeObject: {fileID: 2987846071487995140, guid: fc03b827ca361854286982b27033f80e, type: 3}
   pos: {fileID: 291776351}
   boxSize: {x: 12, y: 5}
@@ -2339,6 +2339,7 @@ GameObject:
   - component: {fileID: 375247351}
   - component: {fileID: 375247350}
   - component: {fileID: 375247352}
+  - component: {fileID: 375247353}
   m_Layer: 7
   m_Name: SecondBoss
   m_TagString: Enemy
@@ -2499,6 +2500,20 @@ MonoBehaviour:
   mag: 1000
   pen: {fileID: 5617122244858268443, guid: 1b5eb302f51a0e84fb4c905f2cff125e, type: 3}
   rotatingPen: {fileID: 5617122244858268443, guid: c9fc9211e0e380343975e22c9fa2b3ac, type: 3}
+--- !u!114 &375247353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375247346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a216054f4c979ee4e89c3257139fda79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Windywave: {fileID: 6199148143398611340, guid: 5d379d4a90de7eb408205623b983b809, type: 3}
+  delray: 0.3
 --- !u!1001 &378044764
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3015,6 +3030,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3105,6 +3121,18 @@ MonoBehaviour:
   smoothing: 1
   maxPosition: {x: 0, y: 0}
   minPosition: {x: 0, y: 0}
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50720a304b48cd946b2fefce8b6f8593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &563296048
 PrefabInstance:
   m_ObjectHideFlags: 0

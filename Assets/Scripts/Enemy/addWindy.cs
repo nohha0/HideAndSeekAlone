@@ -5,54 +5,55 @@ using UnityEngine;
 public class addWindy : MonoBehaviour
 {
     GameObject secondboss;  //보스 반전 확인
-    public float speed;
-    float fastspeed;
+    Rigidbody2D riged;
     SpriteRenderer rend;    //바람 좌우반전
-
+    private data script;
 
     bool Xcon;              //x좌표 컨트롤
     bool SetShoot = true;   //방향 셋팅
     float backmove = 0;
+    public float speed;
+    public float fastspeed;
+
+
     void Start()
     {
         secondboss = GameObject.Find("SecondBoss");
         rend = GetComponent<SpriteRenderer>();
+        riged = GetComponent<Rigidbody2D>();
         Invoke("OnDestroy", 10);
-        fastspeed = speed + 200;
+        script = GameObject.Find("Main Camera").GetComponent<data>();            //스크립트 접근
+
+        fastspeed = speed = 160;
+
+        // 카운트 하기 위한 Filp 구분
+        if (!secondboss.GetComponent<SpriteRenderer>().flipX)
+        {
+            Debug.Log("++1");
+            script.Lcount++;
+        }
+        if (secondboss.GetComponent<SpriteRenderer>().flipX)
+        {
+            script.Rcount++;
+        }
     }
 
 
     void Update()
     {
-        backmove += Time.deltaTime;
-        XFcon();
-        if (Xcon)
-        {
-            if(backmove <=3f)
-            {
-                rend.flipX = true;
-                transform.Translate(transform.right * speed * Time.deltaTime);
-            }
-            else
-            {
-                rend.flipX = false;
-                transform.Translate(transform.right * -1 * fastspeed * Time.deltaTime);
-            }
+        Shoot();
 
-        }
-        else if (!Xcon)
+        if (script.Lcount == 6)
         {
-            if (backmove <= 3f)
-            {
-                rend.flipX = false;
-                transform.Translate(transform.right * -1 * speed * Time.deltaTime);
-            }
-            else
-            {
-                rend.flipX = true;
-                transform.Translate(transform.right * fastspeed * Time.deltaTime);
-            }
+            Invoke("Backright", 1.2f);
+            Invoke("set", 7);
         }
+        if (script.Rcount == 6)
+        {
+            Invoke("Backleft", 1.2f);
+            Invoke("set", 7);
+        }
+
     }
 
     void XFcon()
@@ -69,13 +70,52 @@ public class addWindy : MonoBehaviour
         }
 
     }
-    void Left()
+    void Shoot()
+    {
+        backmove += Time.deltaTime;
+        XFcon();
+        if (Xcon)
+        {
+            if (backmove <= 1.5f)
+            {
+                rend.flipX = true;
+                transform.Translate(transform.right * speed * Time.deltaTime);
+            }
+            else
+            {
+                rend.flipX = false;
+                riged.velocity = Vector2.zero;   //동작 정지
+            }
+
+        }
+        else if (!Xcon)
+        {
+            if (backmove <= 1.5f)
+            {
+                rend.flipX = false;
+                transform.Translate(transform.right * -1 * speed * Time.deltaTime);
+            }
+            else
+            {
+                rend.flipX = true;
+                riged.velocity = Vector2.zero;   //동작 정지
+            }
+        }
+    }
+
+    public void Backright()     //오른쪽으로 돌아감
+    {
+        transform.Translate(transform.right * fastspeed * Time.deltaTime);
+    }
+    public void Backleft()     //왼쪽으로 돌아감
     {
         transform.Translate(transform.right * -1 * fastspeed * Time.deltaTime);
     }
-    void Right()
+
+    private void set()
     {
-        transform.Translate(transform.right * fastspeed * Time.deltaTime);
+        script.Rcount = 0;
+        script.Lcount = 0;
     }
 
 
