@@ -10,10 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4447416834613828650}
   - component: {fileID: 3481095654546291198}
-  - component: {fileID: 6184794777191725264}
-  m_Layer: 0
-  m_Name: "\uC77C\uBC181"
-  m_TagString: Untagged
+  - component: {fileID: 5218710579700208376}
+  - component: {fileID: 3308165424168307721}
+  - component: {fileID: 5032280784940143233}
+  m_Layer: 7
+  m_Name: FlyingMonster
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 143119999
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4b1300f4a7600714fb5e7b818005b339, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -85,7 +87,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6184794777191725264
+--- !u!50 &5218710579700208376
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6326017333661545409}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &3308165424168307721
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6326017333661545409}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -3}
+  serializedVersion: 2
+  m_Radius: 4.13
+--- !u!114 &5032280784940143233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,11 +133,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6326017333661545409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60492ffe56a32f54e86067d07dd90054, type: 3}
+  m_Script: {fileID: 11500000, guid: 95e0a7aa197f84540be6b3df13ddd1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 20
   HP: 100
   attacked: 0
-  mag: 0
-  pos: {fileID: 0}
+  mag: 100
+  pos: {fileID: 4447416834613828650}
+  Lightwave: {fileID: 9148211034722907798, guid: 8de24a915730166489e21503756b5b03, type: 3}
