@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f51125f131ca5af438081675984f2897
+guid: 731f902a88ca0b944ac99e94a77fa4f5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC911\uBCF4\uC2A45 Die_0"
+      name: "\uC911\uBCF4\uC2BC_0"
       rect:
         serializedVersion: 2
-        x: 184
-        y: 32
-        width: 1714
-        height: 1142
+        x: 402
+        y: 173
+        width: 701
+        height: 1495
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,8 +131,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 719487aeb0229de43a600ee4ce695c64
-      internalID: -916549173
+      spriteID: d77ae204266c2f64ebb86374848c58c7
+      internalID: 1349227653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC911\uBCF4\uC2BC_1"
+      rect:
+        serializedVersion: 2
+        x: 1579
+        y: 122
+        width: 746
+        height: 1518
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 019b920fa27a42d4eb4a87f925a25fac
+      internalID: 1546102222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC911\uBCF4\uC2BC_2"
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 119
+        width: 740
+        height: 1575
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2abc926d2a1e29f41958891736c852d9
+      internalID: 1289019126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC911\uBCF4\uC2BC_3"
+      rect:
+        serializedVersion: 2
+        x: 4283
+        y: 160
+        width: 740
+        height: 1581
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df50192787bb7bf4b82ae34bdd769fdf
+      internalID: -1148865613
       vertices: []
       indices: 
       edges: []
@@ -148,7 +211,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uC911\uBCF4\uC2A45 Die_0": -916549173
+      "\uC911\uBCF4\uC2BC_0": 1349227653
+      "\uC911\uBCF4\uC2BC_2": 1289019126
+      "\uC911\uBCF4\uC2BC_1": 1546102222
+      "\uC911\uBCF4\uC2BC_3": -1148865613
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

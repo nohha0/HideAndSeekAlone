@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 5376135314819589711}
   - component: {fileID: 5376135314819589709}
   m_Layer: 7
-  m_Name: monster2
+  m_Name: JumpingMonster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
