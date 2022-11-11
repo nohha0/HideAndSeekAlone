@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class PENcontroller : Enemy
 {
-    public GameObject pen;
-    public GameObject rotatingPen;
+    public GameObject   pen;
+    public GameObject   rotatingPen;
+    public int          jumpForce;
+    public float        jumpSpeed;
 
     Vector3 penPosition;
     Vector3 rotatingPenPosition;
+    Vector2 distance;
 
     float[] penXs = { 1510, 1557, 1604, 1649 };
     float[] penYs = { -524, -494 };
@@ -34,7 +37,7 @@ public class PENcontroller : Enemy
         if (firstPatten && viewing && pens == 0) ViewingPen();
         else if (firstPatten && !viewing && rotatepens == 0)
         {
-            CreateRotatePen();
+            CreateRotatePen(5);
         }
         else { }
     }
@@ -42,8 +45,16 @@ public class PENcontroller : Enemy
     //패턴 시작할 때 이 함수만 실행시키면 됨
     void Patten1()
     {
-        firstPatten = true;
+        Invoke("Jump", 3);   
         viewing = true;
+    }
+
+    void Jump()
+    {
+        firstPatten = true;
+        distance = targetGameObject.transform.position - transform.position;
+        rigid.AddForce(new Vector2(distance.x * jumpSpeed, jumpForce));
+        Invoke("Jump", 3);
     }
 
     void ViewingPen()
@@ -52,12 +63,12 @@ public class PENcontroller : Enemy
         penPosition = new Vector3(transform.position.x, transform.position.y + 30f, transform.position.z);
         Instantiate(pen, penPosition, transform.rotation);
 
-        Invoke("OffViewing", 2);
+        Invoke("OffViewing", 1);
     }
 
-    void CreateRotatePen()
+    void CreateRotatePen(int count)
     {
-        if (rotatepens >= 50) return;
+        if (rotatepens >= count) return;
 
         rotatepens++;
         //float penX = Random.RandomRange(1509f, 1652f);

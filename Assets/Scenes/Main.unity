@@ -1377,7 +1377,7 @@ GameObject:
   - component: {fileID: 203950453}
   - component: {fileID: 203950454}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1407,7 +1407,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 203950452}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ba51330b66f55b642a5ff156806009c4, type: 2}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1596,8 +1596,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   levelCount: 0
-  expCurrent: 0
-  expLeft: 1000
   Wait: 0
   upgradePanel: {fileID: 1522714297}
 --- !u!114 &219763305
@@ -1615,6 +1613,7 @@ MonoBehaviour:
   btn1: {fileID: 2008691235}
   btn2: {fileID: 1867044468}
   btn3: {fileID: 448232157}
+  currentHP: 0
 --- !u!95 &219763306
 Animator:
   serializedVersion: 4
@@ -1650,6 +1649,7 @@ MonoBehaviour:
   btn1: {fileID: 0}
   btn2: {fileID: 0}
   btn3: {fileID: 0}
+  currentHP: 0
   rangeObject: {fileID: 2987846071487995140, guid: fc03b827ca361854286982b27033f80e, type: 3}
   pos: {fileID: 291776351}
   boxSize: {x: 12, y: 5}
@@ -2443,11 +2443,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 375247346}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ba51330b66f55b642a5ff156806009c4, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.0000042915344}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2458,7 +2458,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.0117116, y: 14.95}
+  m_Size: {x: 7.0117116, y: 14.949992}
   m_EdgeRadius: 0
 --- !u!50 &375247351
 Rigidbody2D:
@@ -2472,10 +2472,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 25
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -2499,6 +2499,8 @@ MonoBehaviour:
   mag: 1000
   pen: {fileID: 5617122244858268443, guid: 1b5eb302f51a0e84fb4c905f2cff125e, type: 3}
   rotatingPen: {fileID: 5617122244858268443, guid: c9fc9211e0e380343975e22c9fa2b3ac, type: 3}
+  jumpForce: 800
+  jumpSpeed: 4
 --- !u!1001 &378044764
 PrefabInstance:
   m_ObjectHideFlags: 0
