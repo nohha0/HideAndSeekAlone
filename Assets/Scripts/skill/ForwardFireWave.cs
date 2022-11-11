@@ -8,7 +8,7 @@ public class ForwardFireWave : MonoBehaviour
     SpriteRenderer rend;
     public float speed;
     bool Xcon;
-    float settime = 2;
+    bool SetShoot = true;
 
     void Start()
     {
@@ -41,20 +41,17 @@ public class ForwardFireWave : MonoBehaviour
 
     void XFcon()
     {
-        if (settime == 2f && player.GetComponent<SpriteRenderer>().flipX)
+        if (SetShoot && player.GetComponent<SpriteRenderer>().flipX)
         {
             Xcon = true;
-            settime = 0f;
+            SetShoot = false;
         }
-        else if (settime == 2f && !player.GetComponent<SpriteRenderer>().flipX)
+        else if (SetShoot&& !player.GetComponent<SpriteRenderer>().flipX)
         {
             Xcon = false;
-            settime = 0f;
+            SetShoot = false;
         }
-        else
-        {
-            settime += Time.deltaTime;
-        }
+
 
     }
     private void OnTriggerStay2D(Collider2D collision)
