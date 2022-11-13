@@ -19,7 +19,10 @@ public class PlayerController : MonoBehaviour
     public bool isLongJump = false;
     public bool hasAttacked = false;   //피격 중복 금지
     public bool dashOn = false;
-  
+
+    //어택 스크립트
+    private Attack script;
+
 
     void Start()
     {
@@ -27,6 +30,8 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         stats = GetComponent<CharacterStats>();
         animator = GetComponent<Animator>();
+
+        script = GameObject.Find("Player").GetComponent<Attack>();  //공격 스크립트 접근
     }
 
     void Update()
@@ -46,7 +51,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
             isLongJump = false;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow)&&script.AttackOn)
         {
             direction = 1;
             spriteRenderer.flipX = false;
@@ -56,7 +61,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("run", true);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && script.AttackOn)
         {
             direction = 2;
             spriteRenderer.flipX = true;
