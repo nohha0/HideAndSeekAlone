@@ -12,7 +12,7 @@ public class AttackEffects : MonoBehaviour
     {
         Invoke("OnDestroy", 0.4f);
         script = GameObject.Find("Player").GetComponent<Attack>();  //스크립트 접근
-        player = GameObject.Find("Player");   //플레이어 스크립트 접근
+        player = GameObject.Find("Player");   //플레이어 접근
     }
 
     // Update is called once per frame
@@ -28,6 +28,7 @@ public class AttackEffects : MonoBehaviour
     void create()
     {
         transform.localScale = new Vector3(script.boxSize.x, script.boxSize.y, 1);
+
     }
 
 }

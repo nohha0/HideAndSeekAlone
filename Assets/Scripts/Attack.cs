@@ -20,8 +20,9 @@ public class Attack : CharacterStats
     SpriteRenderer rend;  //플레이어 스프라이트
 
 
-    //공격중 스턴
-    public bool AttackOn = true;
+    //공격중 좌우반전 금지
+    public bool AttackLeftOn = true;
+    public bool AttackRightOn = true;
 
     void Start()
     {
@@ -33,12 +34,12 @@ public class Attack : CharacterStats
     {
         if (Input.GetKeyDown(KeyCode.C) && curTime <=0) // 공격버튼을 눌렀다면
         {
-            //공격할때마다 attackSpeed만큼 좌우전환 금지
-            AttackOn = false;
-            Invoke("NotMove", 0.4f);  //0.4초뒤 해제
 
             if (rend.flipX)  //오른쪽 시선
             {
+                //공격할때마다 attackSpeed만큼 좌우전환 금지
+                AttackLeftOn = false;  //왼쪽 시선 금지
+                Invoke("NotMove", 0.4f);  //0.4초뒤 해제
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Rpos.position, boxSize, 0);
                 foreach (Collider2D collider in collider2Ds)
                 {
@@ -56,6 +57,8 @@ public class Attack : CharacterStats
             }
             else if(!rend.flipX)
             {
+                AttackRightOn = false;  //왼쪽 시선 금지
+                Invoke("NotMove", 0.4f);  //0.4초뒤 해제
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Lpos.position, boxSize, 0);
                 foreach (Collider2D collider in collider2Ds)
                 {
@@ -91,7 +94,8 @@ public class Attack : CharacterStats
     // 전환금지 메소드
     void NotMove()
     {
-        AttackOn = true;
+        AttackLeftOn = true;
+        AttackRightOn = true;
     }
 
 

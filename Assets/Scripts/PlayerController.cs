@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
             isLongJump = false;
 
-        if (Input.GetKey(KeyCode.LeftArrow)&&script.AttackOn)
+        if (Input.GetKey(KeyCode.LeftArrow)&&script.AttackLeftOn)
         {
             direction = 1;
             spriteRenderer.flipX = false;
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("run", true);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow) && script.AttackOn)
+        if (Input.GetKey(KeyCode.RightArrow) && script.AttackRightOn)
         {
             direction = 2;
             spriteRenderer.flipX = true;
