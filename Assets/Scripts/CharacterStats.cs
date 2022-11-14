@@ -11,8 +11,8 @@ public class CharacterStats : MonoBehaviour
     float attackRange;           //공격범위
     protected int attackPower = 20;        //공격력
     int avoidanceRate = 0;       //회피율
-    int maxHP = 4;               //최대 목숨
-    int currentHP;               //현재 목숨
+    int maxHP = 10;               //최대 목숨
+    public int currentHP;               //현재 목숨
     int attackPowerCount = 0;
     int attackSpeedCount = 0;
     int attackRangeCount = 0;
