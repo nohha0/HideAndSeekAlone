@@ -2346,6 +2346,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6678384164309096750, guid: ef854f104c35c01418e6ccd230a944b3, type: 3}
   m_PrefabInstance: {fileID: 378044764}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &414032456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 414032457}
+  m_Layer: 0
+  m_Name: TeleportBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &414032457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414032456}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1580, y: -530, z: 2.3874846}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &443403408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6956,6 +6987,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3613559190343363221, guid: 765c0180b324623488ba7cf20fdb1a1c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613559190343363221, guid: 765c0180b324623488ba7cf20fdb1a1c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613559190343363221, guid: 765c0180b324623488ba7cf20fdb1a1c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3613559191624343375, guid: 765c0180b324623488ba7cf20fdb1a1c, type: 3}
       propertyPath: m_Name
       value: test Variant
@@ -7028,7 +7071,11 @@ MonoBehaviour:
   HP: 1000
   attacked: 0
   mag: 1000
-  Nomal_1: {fileID: 0}
+  Nomal_1: {fileID: 7020963933655834123, guid: 35f90ef7dcd3707479aba31a2ba55be5, type: 3}
+  Nomal_2: {fileID: 5376135314819589707, guid: 4629c334f0d001045bf6bae93b942565, type: 3}
+  Fly_1: {fileID: 6326017333661545409, guid: 9a3039bcf00c3054dbb7341b29bbdc08, type: 3}
+  Fly_2: {fileID: 6326017333661545409, guid: 7a71ec2759f1b9b469de2158deb11c08, type: 3}
+  pos: {fileID: 0}
 --- !u!1001 &1385558963
 PrefabInstance:
   m_ObjectHideFlags: 0
