@@ -68,7 +68,11 @@ public class PENcontroller : Enemy
 
     void CreateRotatePen(int count)
     {
-        if (rotatepens >= count) return;
+        if (rotatepens >= count)
+        {
+            rotatepens = 0;
+            return;
+        }
 
         rotatepens++;
         //float penX = Random.RandomRange(1509f, 1652f);
