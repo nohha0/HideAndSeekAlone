@@ -54,7 +54,7 @@ public class PENcontroller : Enemy
         firstPatten = true;
         distance = targetGameObject.transform.position - transform.position;
         rigid.AddForce(new Vector2(distance.x * jumpSpeed, jumpForce));
-        Invoke("Jump", 3);
+        //Invoke("Jump", 3);
     }
 
     void ViewingPen()
