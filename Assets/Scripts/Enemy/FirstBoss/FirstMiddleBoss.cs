@@ -9,15 +9,19 @@ public class FirstMiddleBoss : Enemy
     public GameObject branch;
 
     Vector3 scissorsPosition;
+    Vector3 branchPosition;
     int scissorsCount;
     int branchCount;
+
+    float[] penXs = { 1517, 1580, 1644 };
 
     override protected void Start()
     {
         base.Start();
         scissorsCount = 0;
         branchCount = 0;
-        ThrowScissors(5);
+        //ThrowScissors();
+        CreateBranch();
     }
 
     override protected void Update()
@@ -25,9 +29,20 @@ public class FirstMiddleBoss : Enemy
         base.Update();
     }
 
-    void ThrowScissors(int count)
+    void CreateBranch()
     {
-        if (scissorsCount >= count)
+        branchCount++;
+
+        int randPos = Random.Range(0, 3);
+        branchPosition = new Vector3(penXs[randPos], transform.position.y - 50f, transform.position.z);
+        Instantiate(branch, branchPosition, transform.rotation);
+
+        Invoke("CreateBranch", 3);
+    }
+
+    void ThrowScissors()
+    {
+        if (scissorsCount >= 10)
         {
             scissorsCount = 0;
             return;
