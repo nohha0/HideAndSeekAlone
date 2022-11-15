@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class SetWindy : MonoBehaviour
 {
-    SpriteRenderer rend;
     public GameObject Windywave;
-
+    SpriteRenderer rend;
     public float delray;
     float curtime;
     Vector3 setpos;
@@ -14,23 +13,18 @@ public class SetWindy : MonoBehaviour
 
     void Start()
     {
-        rend = GetComponent<SpriteRenderer>();
         curtime = delray;
-
+        rend = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
         //test
         Setpos();
-
-
-
     }
 
     void Setpos()
     {
-
         if(i<7)
         {
             if (!rend.flipX)  //캐릭터가 오른쪽에 있을경우  

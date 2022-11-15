@@ -37,7 +37,7 @@ public class PENcontroller : Enemy
         if (firstPatten && viewing && pens == 0) ViewingPen();
         else if (firstPatten && !viewing && rotatepens == 0)
         {
-            CreateRotatePen(5);
+            CreateRotatePen();
         }
         else { }
     }
@@ -54,7 +54,7 @@ public class PENcontroller : Enemy
         firstPatten = true;
         distance = targetGameObject.transform.position - transform.position;
         rigid.AddForce(new Vector2(distance.x * jumpSpeed, jumpForce));
-        Invoke("Jump", 3);
+        //Invoke("Jump", 3);
     }
 
     void ViewingPen()
@@ -66,9 +66,9 @@ public class PENcontroller : Enemy
         Invoke("OffViewing", 1);
     }
 
-    void CreateRotatePen(int count)
+    void CreateRotatePen()
     {
-        if (rotatepens >= count)
+        if (rotatepens >= 10)
         {
             rotatepens = 0;
             return;
