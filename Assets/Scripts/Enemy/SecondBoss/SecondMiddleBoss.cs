@@ -32,7 +32,7 @@ public class SecondMiddleBoss : Enemy
     Vector3 setpos;
     int i = 0;
 
-    int SetSkill;
+    float SetSkill;
 
     
     override protected void Start()
@@ -40,7 +40,6 @@ public class SecondMiddleBoss : Enemy
         base.Start();
         firstPatten = false;
         viewing = false;
-        Patten1();
 
         curtime = delray;
     }
@@ -52,30 +51,26 @@ public class SecondMiddleBoss : Enemy
         if (firstPatten && viewing && pens == 0) ViewingPen();
         else if (firstPatten && !viewing && rotatepens == 0)
         {
-            CreateRotatePen(5);
+            CreateRotatePen();
         }
         else { }
 
 
         if (!OnPattern)
         {
-            SetSkill = Random.Range(0, 2);
-            /*
-            switch (SetSkill)
+            SetSkill = Random.RandomRange(0, 101);
+
+            if (SetSkill > 60)
             {
-                case 0:
-                    Patten1();
-                    Debug.Log("000000000");
-                    break;
-
-                case 1:
-                    Setpos();
-                    Debug.Log("111111111");
-                    break;
+                Invoke("Patten1", 2);
+                //Patten1();
+                Debug.Log("000000000");
             }
-            */
-
-            Invoke("Patten1", 3);
+            else
+            {
+                Invoke("Setpos", 2);
+                Debug.Log("111111111");
+            }
         }
     }
 
@@ -112,9 +107,9 @@ public class SecondMiddleBoss : Enemy
         Invoke("OffViewing", 1);
     }
 
-    void CreateRotatePen(int count)
+    void CreateRotatePen()
     {
-        if (rotatepens >= count)
+        if (rotatepens >= 4)
         {
             rotatepens = 0;
             OnPattern = false;
@@ -138,6 +133,7 @@ public class SecondMiddleBoss : Enemy
     void OffViewing()
     {
         viewing = false;
+        pens = 0;
     }
 
     //Wind ------------------------------------------------------------------------------------
@@ -160,8 +156,8 @@ public class SecondMiddleBoss : Enemy
             {
                 if (curtime <= 0 && i < 3)
                 {
-                    Vector3 setpos = new Vector3(transform.position.x + 10, transform.position.y, transform.position.z);
-                    Instantiate(Windywave, setpos, transform.rotation);
+                    Vector3 setpos1 = new Vector3(transform.position.x + 10, transform.position.y, transform.position.z);
+                    Instantiate(Windywave, setpos1, transform.rotation);
                     curtime = delray;
                     i++;
 
@@ -173,8 +169,8 @@ public class SecondMiddleBoss : Enemy
                 }
                 else if (i > 3 && curtime <= 0)
                 {
-                    setpos = new Vector3(transform.position.x + 10, transform.position.y + 45, transform.position.z);
-                    Instantiate(Windywave, setpos, transform.rotation);
+                    Vector3 setpos2 = new Vector3(transform.position.x + 10, transform.position.y + 45, transform.position.z);
+                    Instantiate(Windywave, setpos2, transform.rotation);
                     curtime = delray;
                     i++;
                 }
