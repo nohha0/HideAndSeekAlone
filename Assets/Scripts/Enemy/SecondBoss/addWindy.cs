@@ -26,16 +26,7 @@ public class addWindy : MonoBehaviour
 
         fastspeed = speed = 160;
 
-        // 카운트 하기 위한 Filp 구분
-        if (!secondboss.GetComponent<SpriteRenderer>().flipX)
-        {
-            Debug.Log(script.Lcount);
-            script.Lcount++;
-        }
-        if (secondboss.GetComponent<SpriteRenderer>().flipX)
-        {
-            script.Rcount++;
-        }
+        Debug.Log(script.Lcount);
     }
 
 
@@ -43,12 +34,12 @@ public class addWindy : MonoBehaviour
     {
         Shoot();
 
-        if (script.Lcount == 6)
+        if (script.Lcount >= 6)
         {
             Invoke("Backright", 1.2f);
             Invoke("set", 4);
         }
-        if (script.Rcount == 6)
+        if (script.Rcount >= 6)
         {
             Invoke("Backleft", 1.2f);
             Invoke("set", 4);

@@ -9016,7 +9016,7 @@ MonoBehaviour:
   jumpForce: 50
   jumpSpeed: 50
   Windywave: {fileID: 6199148143398611340, guid: 5d379d4a90de7eb408205623b983b809, type: 3}
-  delray: 0.3
+  delray: 0.2
 --- !u!114 &1788335494
 MonoBehaviour:
   m_ObjectHideFlags: 0

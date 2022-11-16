@@ -29,10 +29,13 @@ public class SecondMiddleBoss : Enemy
 
     public float delray;
     float curtime;
-    Vector3 setpos;
     int i = 0;
+    private data script;  //스크립트 접근
+
 
     float SetSkill;
+
+    bool SetWindy = false;    //함수 소환
 
     
     override protected void Start()
@@ -41,13 +44,14 @@ public class SecondMiddleBoss : Enemy
         firstPatten = false;
         viewing = false;
 
+
+        script = GameObject.Find("Main Camera").GetComponent<data>();
         curtime = delray;
     }
 
     override protected void Update()
     {
         base.Update();
-
         if (firstPatten && viewing && pens == 0) ViewingPen();
         else if (firstPatten && !viewing && rotatepens == 0)
         {
@@ -58,9 +62,10 @@ public class SecondMiddleBoss : Enemy
 
         if (!OnPattern)
         {
+            OnPattern = true;
             SetSkill = Random.RandomRange(0, 101);
 
-            if (SetSkill > 60)
+            if (SetSkill > 90)
             {
                 Invoke("Patten1", 2);
                 //Patten1();
@@ -68,6 +73,8 @@ public class SecondMiddleBoss : Enemy
             }
             else
             {
+                i = 0;
+                curtime = 0;
                 Invoke("Setpos", 2);
                 Debug.Log("111111111");
             }
@@ -81,7 +88,6 @@ public class SecondMiddleBoss : Enemy
     {
         Invoke("Jump1", 3);
         viewing = true;
-        OnPattern = true;
     }
 
 
@@ -141,45 +147,52 @@ public class SecondMiddleBoss : Enemy
 
     void Setpos()
     {
-        OnPattern = true;
 
-        if (i >= 7)
+        if (i >= 3)
         {
-            i = 0;
+            SetWindy = false;
             OnPattern = false;
-            return;
+            
+            return;  //리턴될떄 게임에 전부 전달
         }
+        SetWindy = true;
 
-        if (i < 7)
+            Setpos();
+    }
+
+    void InstantDOWN()
+    {
+        Vector3 setpos1 = new Vector3(transform.position.x + 10, transform.position.y, transform.position.z);
+        Instantiate(Windywave, setpos1, transform.rotation);
+        script.Lcount++;
+
+    }
+    void InstantUP()
+    {
+        Vector3 setpos2 = new Vector3(transform.position.x + 10, transform.position.y + 45, transform.position.z);
+        Instantiate(Windywave, setpos2, transform.rotation);
+        script.Lcount++;
+    }
+
+    private void FixedUpdate()
+    {
+
+        if(SetWindy)
         {
             if (!spriteRend.flipX)  //캐릭터가 오른쪽에 있을경우  
             {
                 if (curtime <= 0 && i < 3)
                 {
-                    Vector3 setpos1 = new Vector3(transform.position.x + 10, transform.position.y, transform.position.z);
-                    Instantiate(Windywave, setpos1, transform.rotation);
-                    curtime = delray;
-                    i++;
-
-                }
-                else if (i == 3 && curtime <= 0)
-                {
-                    curtime = 0.6f;
-                    i++;
-                }
-                else if (i > 3 && curtime <= 0)
-                {
-                    Vector3 setpos2 = new Vector3(transform.position.x + 10, transform.position.y + 45, transform.position.z);
-                    Instantiate(Windywave, setpos2, transform.rotation);
+                    InstantDOWN();
+                    Invoke("InstantUP", 0.2f);
                     curtime = delray;
                     i++;
                 }
-                
+                curtime -= Time.deltaTime;
             }
-            curtime -= Time.deltaTime;
         }
-
-        Setpos();
     }
-
 }
+
+
+
