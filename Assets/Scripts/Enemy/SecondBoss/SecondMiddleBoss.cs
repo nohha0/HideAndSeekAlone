@@ -32,7 +32,7 @@ public class SecondMiddleBoss : Enemy
     Vector3 setpos;
     int i = 0;
 
-    float SetSkill;
+    int SetSkill;
 
     
     override protected void Start()
@@ -58,7 +58,12 @@ public class SecondMiddleBoss : Enemy
 
         if (!OnPattern)
         {
+<<<<<<< Updated upstream
             SetSkill = Random.RandomRange(0, 101);
+=======
+            OnPattern = true;
+            SetSkill = Random.Range(0, 101);
+>>>>>>> Stashed changes
 
             if (SetSkill > 60)
             {
