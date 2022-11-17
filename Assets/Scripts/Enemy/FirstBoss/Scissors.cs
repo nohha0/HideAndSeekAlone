@@ -20,7 +20,5 @@ public class Scissors : MonoBehaviour
         //lookTime += Time.deltaTime;
         //if (lookTime <= 5f)
         transform.LookAt(targetGameObject.transform);
-
-
     }
 }
